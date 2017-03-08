@@ -4,11 +4,15 @@
              xmlns:local="clr-namespace:XamTime"
              Padding="20"
              x:Class="XamTime.MainPage">
+    <ContentPage.ToolbarItems>        
+        <ToolbarItem Name="Log Out" Clicked="LogOut_Clicked" />
+    </ContentPage.ToolbarItems>
+    
     <Frame>
         <StackLayout>
-            <Entry x:Name="txtUser" Placeholder="user name" />
-            <Entry x:Name="txtPass" Placeholder="password" IsPassword="True" />
-            <Button Text="Login &amp; Get Data" Clicked="Button_Clicked"/>
+            <Entry x:Name="txtEndpoint" Placeholder="GetUserTimekeeperModel" />
+            
+            <Button Text="Get Data" Clicked="Button_Clicked"/>
             
             <Label x:Name="lblStatus" 
            VerticalOptions="Center" 
