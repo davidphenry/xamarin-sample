@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamTime"
+             Padding="20"
+             x:Class="XamTime.MainPage">
+    <Frame>
+        <StackLayout>
+            <Entry x:Name="txtUser" Placeholder="user name" />
+            <Entry x:Name="txtPass" Placeholder="password" IsPassword="True" />
+            <Button Text="Login &amp; Get Data" Clicked="Button_Clicked"/>
+            
+            <Label x:Name="lblStatus" 
+           VerticalOptions="Center" 
+           HorizontalOptions="Center" />
+        </StackLayout>
+    </Frame>
+</ContentPage>
