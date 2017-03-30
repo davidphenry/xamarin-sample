@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
+using XamTime.Models;
 
 namespace XamTime.Services
 {
@@ -50,6 +52,31 @@ namespace XamTime.Services
             string json = await ReadJsonFromContentAsync(response.Content);
             return json;
         }
+
+        internal static async Task<IEnumerable<ClientAccount>> GetAccountData()
+        {
+            var list = new List<ClientAccount>();
+            for (int i = 1; i <= 10; i++)
+                list.Add(new ClientAccount() { AccountId = i.ToString(), AccountName = $"Account{i}" });
+            return list;
+
+            //InitClient();
+            //string baseUri = "http://portal.dragonspears.com/WebServices/TimeEntry.asmx/";
+
+            //var uri = $"{baseUri}GetAccounts?showAllAccounts=true";
+            
+            //var response = await client.GetAsync(uri);
+
+            //if (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized)
+            //    throw new Exception("Login Failed");
+
+            //response.EnsureSuccessStatusCode();
+
+            //string json = await ReadJsonFromContentAsync(response.Content);
+            //var list = await ReadJson<IEnumerable<ClientAccount>>(json);
+            //return list;
+        }
+
         private static async Task<string> ReadJsonFromContentAsync(HttpContent content)
         {
             var stream = await content.ReadAsStreamAsync();

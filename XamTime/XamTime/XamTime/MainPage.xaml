@@ -2,21 +2,40 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XamTime"
+             xmlns:conv="clr-namespace:XamTime.Converters"
              Padding="20"
              x:Class="XamTime.MainPage">
-    <ContentPage.ToolbarItems>        
+    <ContentPage.Resources>
+        <!--<conv:AccountIdToColorConverter x:Key="accountIdToColorConverter" />-->
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
         <ToolbarItem Name="Log Out" Clicked="LogOut_Clicked" />
     </ContentPage.ToolbarItems>
-    
+
     <Frame>
         <StackLayout>
-            <Entry x:Name="txtEndpoint" Placeholder="GetUserTimekeeperModel" />
-            
+            <Entry x:Name="txtEndpoint" Text="{Binding Endpoint}" />
+
             <Button Text="Get Data" Clicked="Button_Clicked"/>
-            
-            <Label x:Name="lblStatus" 
+
+            <Label Text="{Binding Status}" x:Name="txtStatus"
            VerticalOptions="Center" 
            HorizontalOptions="Center" />
+
+            <ListView ItemsSource="{Binding AccountList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Spacing="10" Orientation="Horizontal">
+                                    <Label Text="{Binding AccountId}"/>
+                                    <Label Text="{Binding AccountName}" Style="{StaticResource redText}"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </Frame>
 </ContentPage>

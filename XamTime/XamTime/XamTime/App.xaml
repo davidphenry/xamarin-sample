@@ -5,6 +5,15 @@
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
+        <!-- Labels -->
+        <Style TargetType="Label">
+            <Setter Property="FontSize"  Value="Medium" />
+        </Style>
 
-	</Application.Resources>
+        <Style x:Key="redText" TargetType="Label">
+            <Setter Property="TextColor" Value="#FF0000"/>
+            <Setter Property="FontSize"  Value="Medium"/>
+        </Style>
+        
+    </Application.Resources>
 </Application>

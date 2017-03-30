@@ -13,7 +13,7 @@ namespace XamTime
         {
             InitializeComponent();
 
-            MainPage = new XamTime.LoginPage();
+            MainPage = new XamTime.MainPage();
         }
 
         protected override void OnStart()
