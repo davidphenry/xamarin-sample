@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamTime
 {
     public partial class App : Application
@@ -13,7 +15,7 @@ namespace XamTime
         {
             InitializeComponent();
 
-            MainPage = new XamTime.MainPage();
+            MainPage = new XamTime.LoginPage();
         }
 
         protected override void OnStart()

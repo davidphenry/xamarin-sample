@@ -6,7 +6,10 @@
              Padding="20"
              x:Class="XamTime.MainPage">
     <ContentPage.Resources>
-        <!--<conv:AccountIdToColorConverter x:Key="accountIdToColorConverter" />-->
+        <ResourceDictionary>
+            <!--<conv:AccountIdToColorConverter x:Key="accountIdToColorConverter" />-->
+        </ResourceDictionary>
+        
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Log Out" Clicked="LogOut_Clicked" />

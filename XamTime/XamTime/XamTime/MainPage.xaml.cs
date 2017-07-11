@@ -43,7 +43,7 @@ namespace XamTime
     {
         public MainPageViewModel()
         {
-            Endpoint = "GetUserTimekeeperModel";
+            Endpoint = "GetTimekeeperData";
         }
 
         string _endpoint;
@@ -71,7 +71,7 @@ namespace XamTime
         {
             try
             {
-                //               _status = await TimeDataService.GetTimeData(Endpoint);
+                //_status = await TimeDataService.GetTimeData(Endpoint);
 
                 AccountList = new ObservableCollection<ClientAccount>(await TimeDataService.GetAccountData());
             }

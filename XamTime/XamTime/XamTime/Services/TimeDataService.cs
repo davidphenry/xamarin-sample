@@ -49,46 +49,52 @@ namespace XamTime.Services
 
             response.EnsureSuccessStatusCode();
 
-            string json = await ReadJsonFromContentAsync(response.Content);
+            string json = await response.Content.ReadAsStringAsync();
             return json;
         }
 
         internal static async Task<IEnumerable<ClientAccount>> GetAccountData()
         {
-            var list = new List<ClientAccount>();
-            for (int i = 1; i <= 10; i++)
-                list.Add(new ClientAccount() { AccountId = i.ToString(), AccountName = $"Account{i}" });
-            return list;
-
-            //InitClient();
-            //string baseUri = "http://portal.dragonspears.com/WebServices/TimeEntry.asmx/";
-
-            //var uri = $"{baseUri}GetAccounts?showAllAccounts=true";
-            
-            //var response = await client.GetAsync(uri);
-
-            //if (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized)
-            //    throw new Exception("Login Failed");
-
-            //response.EnsureSuccessStatusCode();
-
-            //string json = await ReadJsonFromContentAsync(response.Content);
-            //var list = await ReadJson<IEnumerable<ClientAccount>>(json);
+            //var list = new List<ClientAccount>();
+            //for (int i = 1; i <= 10; i++)
+            //    list.Add(new ClientAccount() { AccountId = i.ToString(), AccountName = $"Account{i}" });
             //return list;
+
+            InitClient();
+            string baseUri = "http://portal.dragonspears.com/WebServices/TimeEntry.asmx/";
+
+            var uri = $"{baseUri}GetAccounts?showAllAccounts=true";
+
+            var response = await client.GetAsync(uri);
+
+            if (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized)
+                throw new Exception("Login Failed");
+
+            response.EnsureSuccessStatusCode();
+
+            var list = await ReadXml<ClientAccounts>(response);
+            return list.Accounts;
         }
 
-        private static async Task<string> ReadJsonFromContentAsync(HttpContent content)
-        {
-            var stream = await content.ReadAsStreamAsync();
-            string json = null;
-            using (var reader = new StreamReader(stream))
-                json = await reader.ReadToEndAsync();
+        //private static async Task<string> ReadJsonFromContentAsync(HttpContent content)
+        //{
+        //    var stream = await content.ReadAsStreamAsync();
+        //    string json = null;
+        //    using (var reader = new StreamReader(stream))
+        //        json = await reader.ReadToEndAsync();
 
-            return json;
-        }
-        private static async Task<T> ReadJson<T>(string json) where T : class
+        //    return json;
+        //}
+        private static async Task<T> ReadJson<T>(HttpResponseMessage response) where T : class
         {
+            string json = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(json);
+            return result;
+        }
+        private static async Task<T> ReadXml<T>(HttpResponseMessage response) where T : class
+        {
+            string xml = await response.Content.ReadAsStringAsync();
+            var result = xml.Deserialize<T>();
             return result;
         }
     }

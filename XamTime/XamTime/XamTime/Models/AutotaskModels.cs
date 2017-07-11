@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace XamTime.Models
 {
@@ -14,6 +15,12 @@ namespace XamTime.Models
         public string RoleName;
     }
 
+    [XmlRoot("ArrayOfClientAccount", Namespace = "http://tempuri.org/")]
+    public class ClientAccounts 
+    {
+        [XmlElement("ClientAccount")]
+        public List<ClientAccount> Accounts { get; set; }
+    }
     public class ClientAccount
     {
         public string AccountId { get; set; }

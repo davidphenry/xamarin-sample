@@ -5,7 +5,9 @@
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
-        <!-- Labels -->
+
+        <ResourceDictionary>
+                <!-- Labels-->
         <Style TargetType="Label">
             <Setter Property="FontSize"  Value="Medium" />
         </Style>
@@ -14,6 +16,7 @@
             <Setter Property="TextColor" Value="#FF0000"/>
             <Setter Property="FontSize"  Value="Medium"/>
         </Style>
-        
+         
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
